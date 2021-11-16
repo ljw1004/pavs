@@ -4,9 +4,10 @@ I'd like to figure out the video format for backed up video from my security cam
 ![av-backup](https://user-images.githubusercontent.com/3316258/141853620-396def5d-fc59-4822-99af-33551f547abc.jpg)
 
 The backup produces (1) a single `.pst` file, (2) a load of `.psf` files, each up to about 700mb and containing footage from one or more cameras for up to about 12 hours, (3) a windows executable that can play those files `Player.exe, avcodec-52.dll, avformat-52.dll, avutil-50.dll, libfaac.dll, ...`. Here's what it looks like when you play video:
+
 https://user-images.githubusercontent.com/3316258/141854196-cbe3d804-ae89-4d50-b58f-93b04a0a8169.mp4
 
-[This link](https://superuser.com/a/790140) claims you can download the software "VMax ACS Playback for Windows/Mac" - but the only software I found from that link was the "VMax Client" software for receiving live data from security cameras, not the player. Lots of people have asked how to convert .psf files into other formats [[link1](https://community.spiceworks.com/topic/753755-how-to-convert-psf-to-avi-or-mpeg), [link2](https://www.reddit.com/r/techsupport/comments/bi53e4/i_have_some_video_files_in_psf_that_i_need_to/), [link3](https://www.reddit.com/r/techsupport/comments/2k0ib0/how_to_play_psf_files/), [link4](https://www.reddit.com/r/cctv/comments/9wq2qc/converting_psf_to_any_sort_of_common_video_file/), [link5](https://www.reddit.com/r/techsupport/comments/2nfyk1/what_program_plays_a_psf_video_on_a_mac/), [link6](https://www.reddit.com/r/ITdept/comments/9so463/convert_multi_camera_to_psf/)] but no one has succeeded so far - the files don't open in VLC nor Handbrake nor K-Lite Codec Pack.
+[This link](https://superuser.com/a/790140) claims you can download the software "VMax ACS Playback for Windows/Mac". From that link, the Windows software installs two programs into "C:\Program Files (x86)" - (1) the VMax Client sofware for receiving live data from security cameras, and (2) the player. The Mac software seems to only incldue the VMax Client, not the player. Lots of people have asked how to convert .psf files into other formats [[link1](https://community.spiceworks.com/topic/753755-how-to-convert-psf-to-avi-or-mpeg), [link2](https://www.reddit.com/r/techsupport/comments/bi53e4/i_have_some_video_files_in_psf_that_i_need_to/), [link3](https://www.reddit.com/r/techsupport/comments/2k0ib0/how_to_play_psf_files/), [link4](https://www.reddit.com/r/cctv/comments/9wq2qc/converting_psf_to_any_sort_of_common_video_file/), [link5](https://www.reddit.com/r/techsupport/comments/2nfyk1/what_program_plays_a_psf_video_on_a_mac/), [link6](https://www.reddit.com/r/ITdept/comments/9so463/convert_multi_camera_to_psf/)] but no one has succeeded so far - the files don't open in VLC nor Handbrake nor K-Lite Codec Pack.
 
 ***Can I figure out the video format of .psf files and convert them to mp4 myself?***
 
@@ -83,32 +84,32 @@ Wikipedia notes that PFS stands for [Progressive Segmented Frame](https://en.wik
 
 I extracted out several frames using the `get_frames.py` script in this repository. For each frame, I opened it in Player.exe and tried to export frames
 to disk as images. It was hard export every single frame, and hard to know which of the exported images correspond to which frame.
-* frame0 [raw]() [hex](), frame1 [raw]() [hex]()
-* frame2 [raw]() [hex](), frame3 [raw]() [hex]()
-* frame4 [raw]() [hex](), frame5 [raw]() [hex]()
-* images: [00:00:01.jpg](), [00:00:02a.jpg](), [00:00:02b.jpg](), [00:00:02c.jpg](), [00:00:03.jpg]()
-* frame42052 [raw]() [hex](), frame42053 [raw]() [hex]()
-* frame42054 [raw]() [hex](), frame42055 [raw]() [hex]()
-* frame42056 [raw]() [hex](), frame42057 [raw]() [hex]()
-* images: [05:50:48.jpg](), [05:50:49.jpg](), [05:50:50.jpg]()
-* frame71760 [raw]() [hex](), frame71761 [raw]() [hex]()
-* frame71762 [raw]() [hex](), frame71763 [raw]() [hex]()
-* frame71764 [raw]() [hex](), frame71765 [raw]() [hex]()
-* images: [09:58:37.jpg](), [09:58:38a.jpg](), [09:58:38b.jpg](), [09:58:39.jpg](), [09:58:40.jpg](), 
+* frame0 [raw](https://github.com/ljw1004/pavs/blob/main/frames/frame00000.raw) [hex](https://github.com/ljw1004/pavs/blob/main/frames/frame00000.hex), frame1 [raw](https://github.com/ljw1004/pavs/blob/main/frames/frame00001.raw) [hex](https://github.com/ljw1004/pavs/blob/main/frames/frame00001.hex)
+* frame2 [raw](https://github.com/ljw1004/pavs/blob/main/frames/frame00002.raw) [hex](https://github.com/ljw1004/pavs/blob/main/frames/frame00002.hex), frame3 [raw](https://github.com/ljw1004/pavs/blob/main/frames/frame00003.raw) [hex](https://github.com/ljw1004/pavs/blob/main/frames/frame00003.hex)
+* frame4 [raw](https://github.com/ljw1004/pavs/blob/main/frames/frame00004.raw) [hex](https://github.com/ljw1004/pavs/blob/main/frames/frame00004.hex), frame5 [raw](https://github.com/ljw1004/pavs/blob/main/frames/frame00005.raw) [hex](https://github.com/ljw1004/pavs/blob/main/frames/frame00005.hex)
+* images: [00:00:01.jpg](https://github.com/ljw1004/pavs/blob/main/frames/frame_at_000001.jpg), [00:00:02a.jpg](https://github.com/ljw1004/pavs/blob/main/frames/frame_at_000002a.jpg), [00:00:02b.jpg](https://github.com/ljw1004/pavs/blob/main/frames/frame_at_000002b.jpg), [00:00:02c.jpg](https://github.com/ljw1004/pavs/blob/main/frames/frame_at_000002c.jpg), [00:00:03.jpg](https://github.com/ljw1004/pavs/blob/main/frames/frame_at_000003.jpg)
+* frame42052 [raw](https://github.com/ljw1004/pavs/blob/main/frames/frame42052.raw) [hex](https://github.com/ljw1004/pavs/blob/main/frames/frame42052.hex), frame42053 [raw](https://github.com/ljw1004/pavs/blob/main/frames/frame42053.raw) [hex](https://github.com/ljw1004/pavs/blob/main/frames/frame42053.hex)
+* frame42054 [raw](https://github.com/ljw1004/pavs/blob/main/frames/frame42054.raw) [hex](https://github.com/ljw1004/pavs/blob/main/frames/frame42054.hex), frame42055 [raw](https://github.com/ljw1004/pavs/blob/main/frames/frame42055.raw) [hex](https://github.com/ljw1004/pavs/blob/main/frames/frame42055.hex)
+* frame42056 [raw](https://github.com/ljw1004/pavs/blob/main/frames/frame42056.raw) [hex](https://github.com/ljw1004/pavs/blob/main/frames/frame42056.hex), frame42057 [raw](https://github.com/ljw1004/pavs/blob/main/frames/frame42055.raw) [hex](https://github.com/ljw1004/pavs/blob/main/frames/frame42057.hex)
+* images: [05:50:48.jpg](https://github.com/ljw1004/pavs/blob/main/frames/frame_at_055048.jpg), [05:50:49.jpg](https://github.com/ljw1004/pavs/blob/main/frames/frame_at_055049.jpg), [05:50:50.jpg](https://github.com/ljw1004/pavs/blob/main/frames/frame_at_055050.jpg)
+* frame71760 [raw](https://github.com/ljw1004/pavs/blob/main/frames/frame71760.raw) [hex](https://github.com/ljw1004/pavs/blob/main/frames/frame71760.hex), frame71761 [raw](https://github.com/ljw1004/pavs/blob/main/frames/frame71761.raw) [hex](https://github.com/ljw1004/pavs/blob/main/frames/frame71761.hex)
+* frame71762 [raw](https://github.com/ljw1004/pavs/blob/main/frames/frame71762.raw) [hex](https://github.com/ljw1004/pavs/blob/main/frames/frame71762.hex), frame71763 [raw](https://github.com/ljw1004/pavs/blob/main/frames/frame71763.raw) [hex](https://github.com/ljw1004/pavs/blob/main/frames/frame71763.hex)
+* frame71764 [raw](https://github.com/ljw1004/pavs/blob/main/frames/frame71764.raw) [hex](https://github.com/ljw1004/pavs/blob/main/frames/frame71764.hex), frame71765 [raw](https://github.com/ljw1004/pavs/blob/main/frames/frame71765.raw) [hex](https://github.com/ljw1004/pavs/blob/main/frames/frame71765.hex)
+* images: [09:58:37.jpg](https://github.com/ljw1004/pavs/blob/main/frames/frame_at_095837.jpg), [09:58:38a.jpg](https://github.com/ljw1004/pavs/blob/main/frames/frame_at_095838a.jpg), [09:58:38b.jpg](https://github.com/ljw1004/pavs/blob/main/frames/frame_at_095838b.jpg), [09:58:39.jpg](https://github.com/ljw1004/pavs/blob/main/frames/frame_at_095839.jpg), [09:58:40.jpg](https://github.com/ljw1004/pavs/blob/main/frames/frame_at_095840.jpg), 
 
 I used `cat` to cobble together some frames to make my own .psf video file.
 
 **Video1** stiches together all big-small pairs above (18 frames in total).
-* `cat` frames 0,1,2,3,4,5, 42052,42053,42054,42055,42056,42057, 71760,71761,71762,71763,71764,71765 > [video1.psf]()
-* Observation: [video1_player.mp4](). It played fine in the player. It showed three seconds from early in the day, 3 seconds from the middle of the day, 3 seconds from later in the day.
+* `cat` frames 0,1,2,3,4,5, 42052,42053,42054,42055,42056,42057, 71760,71761,71762,71763,71764,71765 > [video1.psf](https://github.com/ljw1004/pavs/blob/main/videos/video1.psf)
+* Observation: [video1_player.mp4](https://github.com/ljw1004/pavs/blob/main/videos/video1_player.mp4). It played fine in the player. It showed three seconds from early in the day, 3 seconds from the middle of the day, 3 seconds from later in the day.
 
 **Video2** stiches the three ascending time sequences in reverse order.
-* `cat` frames 71760,71761,71762,71763,71764,71765, 42052,42053,42054,42055,42056,42057, 0,1,2,3,4,5 > [video2.psf]()
-* Observations: [video2_player.mp4](). It played fine, as expected, but the UI controls in Player.exe showed it jumping around in the timeline which made it hard to navigate.
+* `cat` frames 71760,71761,71762,71763,71764,71765, 42052,42053,42054,42055,42056,42057, 0,1,2,3,4,5 > [video2.psf](https://github.com/ljw1004/pavs/blob/main/videos/video2.psf)
+* Observations: [video2_player.mp4](https://github.com/ljw1004/pavs/blob/main/videos/video2_player.mp4). It played fine, as expected, but the UI controls in Player.exe showed it jumping around in the timeline which made it hard to navigate.
 
 **Video3** tries to use the wrong "small" frames.
-* `cat` frames 0,1,0,3,0,5, 0,42053,0,42055,0,42057, 0,71761,0,71763,0,71765 > [video3.psf]()
-* Observations: [video3_player.mp4](). It didn't seem to work. I minor frames aren't purely a diff on the preceding major frame; they must also contain
+* `cat` frames 0,1,0,3,0,5, 0,42053,0,42055,0,42057, 0,71761,0,71763,0,71765 > [video3.psf](https://github.com/ljw1004/pavs/blob/main/videos/video3.psf)
+* Observations: [video3_player.mp4](https://github.com/ljw1004/pavs/blob/main/videos/video3_player.mp4). It didn't seem to work. I minor frames aren't purely a diff on the preceding major frame; they must also contain
 some other kind of tie-in.
 
 ## What encoding?
@@ -154,12 +155,12 @@ It's clear that the frames are compressed somehow! But I have no idea what encod
 I looked at the `dumpbin /exports` of the DLLs in the player to see if there were any hints about codec.
 It's unclear, though, since I don't know if Player.exe uses each DLL to read the .psf file or
 to export JPG still images or MP4 clips.
-* [dumpbin /exports avcodec-52.dll]() - part of FFMPEG
-* [dumpbin /exports avformat-52.dll]() - part of FFMPEG
-* [dumpbin /exports avutil-50.dll]() - parg of FFMPEG
-* [dumpbin /exports swscale-0.dll]() - part of FFMPEG
-* [dumpbin /exports libfaac.dll]() - part of FFMPEG
-* [dumpbin /imports player.exe]()...
+* [dumpbin /exports avcodec-52.dll](https://github.com/ljw1004/pavs/blob/main/dlls/avcodec-52.dll.dumpbin) - part of FFMPEG
+* [dumpbin /exports avformat-52.dll](https://github.com/ljw1004/pavs/blob/main/dlls/avformat-52.dll.dumpbin) - part of FFMPEG
+* [dumpbin /exports avutil-50.dll](https://github.com/ljw1004/pavs/blob/main/dlls/avutil-50.dll.dumpbin) - parg of FFMPEG
+* [dumpbin /exports swscale-0.dll](https://github.com/ljw1004/pavs/blob/main/dlls/swscale-0.dll.dumpbin) - part of FFMPEG
+* [dumpbin /exports libfaac.dll](https://github.com/ljw1004/pavs/blob/main/dlls/libfaac.dll.dumpbin) - part of FFMPEG
+* [dumpbin /imports player.exe](https://github.com/ljw1004/pavs/blob/main/dlls/player.exe.dumpbin)...
    * from avcodec-52.dll: audio_resample, audio_resample_close, audio_resample_init, av_init_packet, avcodec_alloc_context, avcodec_alloc_frame, avcodec_close, avcdec_decode_audio3, avcodec_decode_video2, avcodec_encode_audio, avcodec_encode_video, avcodec_find_decoder, avcodec_find_encoder, avcodec_init, avcodec_deinterlace, avpicture_fill, avpicture_get_size
    * from avformat-52.dll: av_interleaved_write_frame, av_new_stream, av_register_all, av_write_header, av_write_trailer, avformat_alloc_output_context2, url_fclose, url_fopen
    * from avutil-50.dll: av_free, av_freep, av_log_set_callback, av_malloc, av_rescale_q
@@ -182,4 +183,13 @@ ODD FRAME
 ```
 After `00 00 00 01` comes the NAL header byte [[walkthrough of NAL headers](https://yumichan.net/video-processing/video-compression/introduction-to-h264-nal-unit/)], in this case always `65` for even frames (nal_unit_type "Coded slice of an IDR picture") and `41` for odd frames (nal_unit_type "Coded slice of a non-IDR picture"). IDR means that it's a full image that can be understood on its own; non-IDR means it needs to reference an earlier frame. This agrees with our "big frame / small frame" observation.
 
+## Decoding the h264
 
+```
+$ tail -c +577 frame00000.raw > in.h264
+
+$ ffmpeg -i in.h264 -frames:v 1 output.png
+in.h264: Invalid data found when processing input
+```
+
+Either it's not actually a valid h.264 bytestream, or I'm trying to decode it wrong. My guess is the latter...
