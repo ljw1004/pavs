@@ -290,4 +290,9 @@ The error message comes from [h264_parse.c](https://github.com/FFmpeg/FFmpeg/blo
 the data in this very first macroblock claims that it's a delta from the previous (left) block, but that doesn't make sense
 since there isn't a previous block!
 
-I don't know where to go next. This is very clearly an IDR slice, but the very first MB in it is nonsensical.
+I don't know where to go next. This is very clearly an IDR slice, but the very first MB in it doesn't make sense.
+
+I wrote `try_profiles.py` in this repository to try every possible combination of profile_idc and level_idc, in case
+the choice of profile/level determines how to interpret the macroblock bits. But every combination I tried either
+had the exact same error "left block unavailable while decoding MB 0 0", or I constructed SPS/PPS wrongly for
+that profile/level.
