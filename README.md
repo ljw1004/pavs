@@ -185,11 +185,109 @@ After `00 00 00 01` comes the NAL header byte [[walkthrough of NAL headers](http
 
 ## Decoding the h264
 
-```
-$ tail -c +577 frame00000.raw > in.h264
+Here is some information on h264 file format:
+* https://www.cardinalpeak.com/blog/worlds-smallest-h-264-encoder
+* https://www.cardinalpeak.com/blog/the-h-264-sequence-parameter-set
 
-$ ffmpeg -i in.h264 -frames:v 1 output.png
-in.h264: Invalid data found when processing input
+A minimal h264 must consists of an SPS 0x67 NAL, a PPS 0x68 NAL, and an IDR 0x65 NAL.
+There's no sign of the SPS or PPS in each PVAS, so I suppose that Player.exe must
+synthesize them itself. I tried cobbling together an SPS and PPS myself:
+```
+$ printf '\x00\x00\x00\x01\x67\x42\x00\x0a\xf8\x16\x0f\x88' > sps
+$ printf '\x00\x00\x00\x01\x68\xce\x38\x80' > pps
+$ tail -c +577 frames/frame00000.raw > idr
+$ cat sps pps idr > all.h264
+$ ffmpeg -i all.h264 -c copy -bsf:v trace_headers -f null -
+```
+Here's how ffmpeg decoded my SPS, my PPS, and the IDR from the PAVS frame. I picked `pic_width_in_mbs_minus1 = 43` since macroblocks (mbs) are 16x16, and 44\*16=704, the pixel width of the image. I picked `pic_height_in_map_units_minus1 = 14` since 14\*16=240. I didn't have a clue what to put for the other parameters and just guessed.
+It's reading of the IDR slice header it got from the PAVS frame looks correct; `slice_type=7` indicates an I slice type, which is right.
+```
+SPS (Sequence Parameter Set)
+forbidden_zero_bi                                       0 = 0
+nal_ref_idc                                            11 = 3
+nal_unit_type                                       00111 = 7
+profile_idc                                      01000010 = 66
+constraint_set0_flag                                    0 = 0
+constraint_set1_flag                                    0 = 0
+constraint_set2_flag                                    0 = 0
+constraint_set3_flag                                    0 = 0
+constraint_set4_flag                                    0 = 0
+constraint_set5_flag                                    0 = 0
+reserved_zero_2bits                                    00 = 0
+level_idc                                        00001010 = 10
+seq_parameter_set_id                                    1 = 0
+log2_max_frame_num_minus4                               1 = 0
+pic_order_cnt_type                                      1 = 0
+log2_max_pic_order_cnt_lsb_minus4                       1 = 0
+max_num_ref_frames                                      1 = 0
+gaps_in_frame_num_allowed_flag                          0 = 0
+pic_width_in_mbs_minus1                       00000101100 = 43
+pic_height_in_map_units_minus1                    0001111 = 14
+frame_mbs_only_flag                                     1 = 1
+direct_8x8_inference_flag                               0 = 0
+frame_cropping_flag                                     0 = 0
+vui_parameters_present_flag                             0 = 0
+rbsp_stop_one_bit                                       1 = 1
+rbsp_alignment_zero_bit                                 0 = 0
+rbsp_alignment_zero_bit                                 0 = 0
+rbsp_alignment_zero_bit                                 0 = 0
+
+
+(PPS) Picture Parameter Set
+forbidden_zero_bit                                      0 = 0
+nal_ref_idc                                            11 = 3
+nal_unit_type                                       01000 = 8
+pic_parameter_set_id                                    1 = 0
+seq_parameter_set_id                                    1 = 0
+entropy_coding_mode_flag                                0 = 0
+bottom_field_pic_order_in_frame_present_flag            0 = 0
+num_slice_groups_minus1                                 1 = 0
+num_ref_idx_l0_default_active_minus1                    1 = 0
+num_ref_idx_l1_default_active_minus1                    1 = 0
+weighted_pred_flag                                      0 = 0
+weighted_bipred_idc                                    00 = 0
+pic_init_qp_minus26                                     1 = 0
+pic_init_qs_minus26                                     1 = 0
+chroma_qp_index_offset                                  1 = 0
+deblocking_filter_control_present_flag                  0 = 0
+constrained_intra_pred_flag                             0 = 0
+redundant_pic_cnt_present_flag                          0 = 0
+rbsp_stop_one_bit                                       1 = 1
+rbsp_alignment_zero_bit                                 0 = 0
+rbsp_alignment_zero_bit                                 0 = 0
+rbsp_alignment_zero_bit                                 0 = 0
+rbsp_alignment_zero_bit                                 0 = 0
+rbsp_alignment_zero_bit                                 0 = 0
+rbsp_alignment_zero_bit                                 0 = 0
+rbsp_alignment_zero_bit                                 0 = 0
+
+
+IDR (Slice Header)
+forbidden_zero_bit                                      0 = 0
+nal_ref_idc                                            11 = 3
+nal_unit_type                                       00101 = 5
+first_mb_in_slice                                       1 = 0
+slice_type                                        0001000 = 7
+pic_parameter_set_id                                    1 = 0
+frame_num                                            0000 = 0
+idr_pic_id                                    00000100000 = 31
+pic_order_cnt_lsb                                    0000 = 0
+no_output_of_prior_pics_flag                            0 = 0
+long_term_reference_flag                                0 = 0
+slice_qp_delta                                    0001001 = -4
 ```
 
-Either it's not actually a valid h.264 bytestream, or I'm trying to decode it wrong. My guess is the latter...
+Unfortunately it failed to decode. It didn't even manage to decode the first macroblock. 
+```
+$ ffmpeg -i all.h264 -frames:v 1 output.png
+left block unavailable for requested intra4x4 mode -1
+error while decoding MB 0 0
+concealing 660 DC, 660 AC, 660 MV errors in I frame
+all.h264: corrupt decoded frame in stream 0
+```
+
+The error message comes from [h264_parse.c](https://github.com/FFmpeg/FFmpeg/blob/release/3.2/libavcodec/h264_parse.c#L159). I guess
+the data in this very first macroblock claims that it's a delta from the previous (left) block, but that doesn't make sense
+since there isn't a previous block!
+
+I don't know where to go next. This is very clearly an IDR slice, but the very first MB in it is nonsensical.
