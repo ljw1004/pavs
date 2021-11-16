@@ -1,0 +1,209 @@
+Microsoft (R) COFF/PE Dumper Version 14.30.30705.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+
+Dump of file avutil-50.dll
+
+File Type: DLL
+
+  Section contains the following exports for avutil-50.dll
+
+    00000000 characteristics
+    512EF484 time date stamp Wed Feb 27 22:09:08 2013
+        0.00 version
+           1 ordinal base
+         177 number of functions
+         177 number of names
+
+    ordinal hint RVA      name
+
+          1    0 00008B99 av_add_q
+          2    1 00001254 av_adler32_update
+          3    2 00001532 av_aes_crypt
+          4    3 0000163F av_aes_init
+          5    4 00011064 av_aes_size
+          6    5 00001DDC av_base64_decode
+          7    6 00001E4E av_base64_encode
+          8    7 00004AA4 av_bmg_get
+          9    8 00006082 av_calloc
+         10    9 00004659 av_check_image_size
+         11    A 00005C76 av_compare_mod
+         12    B 00005A89 av_compare_ts
+         13    C 00002045 av_crc
+         14    D 00001FDD av_crc_get_table
+         15    E 00001F20 av_crc_init
+         16    F 00008C3D av_d2q
+         17   10 00001CC2 av_d2str
+         18   11 00004988 av_dbl2ext
+         19   12 000047E8 av_dbl2int
+         20   13 000051D1 av_default_item_name
+         21   14 00002429 av_des_crypt
+         22   15 0000239A av_des_init
+         23   16 00002874 av_dict_copy
+         24   17 00002823 av_dict_free
+         25   18 0000259C av_dict_get
+         26   19 00002682 av_dict_set
+         27   1A 00008B6E av_div_q
+         28   1B 000060E0 av_dynarray_add
+         29   1C 00003B2E av_eval_expr
+         30   1D 00004E5A av_evaluate_lls
+         31   1E 00003A3D av_expr_eval
+         32   1F 00002FBB av_expr_free
+         33   20 000038B6 av_expr_parse
+         34   21 00003A6E av_expr_parse_and_eval
+         35   22 0000475D av_ext2dbl
+         36   23 00003B81 av_fifo_alloc
+         37   24 00003C6D av_fifo_drain
+         38   25 00003B40 av_fifo_free
+         39   26 00003C91 av_fifo_generic_read
+         40   27 00003BF7 av_fifo_generic_write
+         41   28 00003CF7 av_fifo_realloc2
+         42   29 00003B66 av_fifo_reset
+         43   2A 00003BDC av_fifo_size
+         44   2B 00003BE7 av_fifo_space
+         45   2C 00003D74 av_file_map
+         46   2D 00003F65 av_file_unmap
+         47   2E 0000464F av_fill_image_linesizes
+         48   2F 00004645 av_fill_image_max_pixsteps
+         49   30 00004654 av_fill_image_pointers
+         50   31 00007FE1 av_find_info_tag
+         51   32 00008F43 av_find_nearest_q_idx
+         52   33 000063F3 av_find_opt
+         53   34 000048C8 av_flt2int
+         54   35 00001EE0 av_force_cpu_flags
+         55   36 00005FBD av_free
+         56   37 00003B38 av_free_expr
+         57   38 0000603E av_freep
+         58   39 000055DC av_gcd
+         59   3A 00008469 av_get_bits_per_pixel
+         60   3B 000091C6 av_get_bits_per_sample_fmt
+         61   3C 000091B0 av_get_bytes_per_sample
+         62   3D 00001960 av_get_channel_layout
+         63   3E 000019AD av_get_channel_layout_nb_channels
+         64   3F 000019DD av_get_channel_layout_string
+         65   40 00001EF4 av_get_cpu_flags
+         66   41 000068A3 av_get_double
+         67   42 0000464A av_get_image_linesize
+         68   43 000066A1 av_get_int
+         69   44 00009B9E av_get_picture_type_char
+         70   45 000083EB av_get_pix_fmt
+         71   46 000083D6 av_get_pix_fmt_name
+         72   47 000084C3 av_get_pix_fmt_string
+         73   48 000067F4 av_get_q
+         74   49 00008581 av_get_random_seed
+         75   4A 0000911B av_get_sample_fmt
+         76   4B 00009108 av_get_sample_fmt_name
+         77   4C 00009150 av_get_sample_fmt_string
+         78   4D 00006924 av_get_string
+         79   4E 00001D0B av_get_token
+         80   4F 000043AE av_image_alloc
+         81   50 00004327 av_image_check_size
+         82   51 000044FC av_image_copy
+         83   52 000044C4 av_image_copy_plane
+         84   53 00004087 av_image_fill_linesizes
+         85   54 00003FD9 av_image_fill_max_pixsteps
+         86   55 00004100 av_image_fill_pointers
+         87   56 0000402F av_image_get_linesize
+         88   57 00004BC0 av_init_lls
+         89   58 00004660 av_int2dbl
+         90   59 000046FB av_int2flt
+         91   5A 0000F260 av_lfg_init
+         92   5B 000051E1 av_log
+         93   5C 00004EB7 av_log_default_callback
+         94   5D 00005232 av_log_get_level
+         95   5E 00010020 av_log_level
+         96   5F 0000524C av_log_set_callback
+         97   60 00005242 av_log_set_flags
+         98   61 00005238 av_log_set_level
+         99   62 00005374 av_lzo1x_decode
+        100   63 00005F48 av_malloc
+        101   64 0000605B av_mallocz
+        102   65 00005E7E av_md5_final
+        103   66 00005CD4 av_md5_init
+        104   67 00012170 av_md5_size
+        105   68 00005F08 av_md5_sum
+        106   69 00005D02 av_md5_update
+        107   6A 00005363 av_memcpy_backptr
+        108   6B 00008B1B av_mul_q
+        109   6C 00008D54 av_nearer_q
+        110   6D 00006158 av_next_option
+        111   6E 000064F7 av_opt_find
+        112   6F 0000673E av_opt_flag_is_set
+        113   70 000064B8 av_opt_free
+        114   71 0000766B av_opt_set_defaults
+        115   72 000074C5 av_opt_set_defaults2
+        116   73 00007299 av_opt_set_dict
+        117   74 00006462 av_opt_show2
+        118   75 00003B33 av_parse_and_eval_expr
+        119   76 000079E2 av_parse_color
+        120   77 00003B29 av_parse_expr
+        121   78 00007CAD av_parse_time
+        122   79 00007907 av_parse_video_rate
+        123   7A 0000785E av_parse_video_size
+        124   7B 0001315C av_pix_fmt_descriptors
+        125   7C 00009037 av_rc4_crypt
+        126   7D 00008FA0 av_rc4_init
+        127   7E 000080DE av_read_image_line
+        128   7F 00005F79 av_realloc
+        129   80 00005FD5 av_realloc_f
+        130   81 0000869C av_reduce
+        131   82 00005A03 av_rescale
+        132   83 00005A46 av_rescale_q
+        133   84 00005621 av_rescale_rnd
+        134   85 00011E6C av_reverse
+        135   86 0000930F av_samples_alloc
+        136   87 000091D9 av_samples_fill_arrays
+        137   88 00006D2A av_set_double
+        138   89 00006C8B av_set_int
+        139   8A 0000737E av_set_options_string
+        140   8B 00006CDF av_set_q
+        141   8C 00006D76 av_set_string3
+        142   8D 00009888 av_sha1_final
+        143   8E 00009868 av_sha1_init
+        144   8F 000136D8 av_sha1_size
+        145   90 00009883 av_sha1_update
+        146   91 000097DA av_sha_final
+        147   92 00009691 av_sha_init
+        148   93 000136DC av_sha_size
+        149   94 00009776 av_sha_update
+        150   95 00004C2E av_solve_lls
+        151   96 000060AA av_strdup
+        152   97 000028D0 av_strerror
+        153   98 00001B50 av_stristart
+        154   99 00001BAB av_stristr
+        155   9A 00001C1E av_strlcat
+        156   9B 00001C75 av_strlcatf
+        157   9C 00001BE6 av_strlcpy
+        158   9D 00001B20 av_strstart
+        159   9E 00002E93 av_strtod
+        160   9F 00008C10 av_sub_q
+        161   A0 00009AEA av_tree_destroy
+        162   A1 00009B1D av_tree_enumerate
+        163   A2 00009890 av_tree_find
+        164   A3 00009915 av_tree_insert
+        165   A4 000137E0 av_tree_node_size
+        166   A5 00004BDC av_update_lls
+        167   A6 000051DA av_vlog
+        168   A7 00008268 av_write_image_line
+        169   A8 00009B92 avutil_configuration
+        170   A9 00009B98 avutil_license
+        171   AA 00009B8C avutil_version
+        172   AB 00009BB4 ff_get_cpu_flags_x86
+        173   AC 000119D0 ff_inverse
+        174   AD 00011F6C ff_log2_tab
+        175   AE 00008695 ff_random_get_seed
+        176   AF 00004240 ff_set_systematic_pal2
+        177   B0 0001206C ff_sqrt_tab
+
+  Summary
+
+        1000 .CRT
+        3000 .bss
+        1000 .data
+        2000 .edata
+        3000 .eh_frame
+        1000 .idata
+        3000 .rdata
+        1000 .reloc
+        F000 .text
+        1000 .tls
